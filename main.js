@@ -1,14 +1,11 @@
 const botoes = document.querySelectorAll(".botao");
 
-for (let i = 0; i < botoes.length; i++) {
-  botoes[i].onclick = function () {
-    for (let j = 0; j < botoes.length; j++) {
-      botoes[j].classList.remove("ativo");
-    }
+botoes.forEach((botao) => {
+  botao.onclick = function () {
+    // Remove a classe de quem quer que a tenha no momento
+    document.querySelector(".botao.ativo")?.classList.remove("ativo");
 
-    botoes[i].classList.add("ativo");
+    // Adiciona ao botão clicado
+    botao.classList.add("ativo");
   };
-}
-for (var i = 0; i <= 10; i += 2) {
-  console.log(i);
-}
+});

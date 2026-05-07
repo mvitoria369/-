@@ -35,8 +35,12 @@ body {
   color: var(--verde);
 }
 
+.botoes {
+  display: block; /* No mobile, os botões ficam um em cima do outro */
+}
+
 .botao {
-  font-family: "Crakra Petch", sans-serif;
+  font-family: "Chakra Petch", sans-serif; /* Corrigido aqui */
   background-color: var(--botao-inativo);
   color: var(--branco);
   display: flex;
@@ -49,32 +53,30 @@ body {
   border-left: 2px solid var(--botao-ativo);
   border-right: 2px solid var(--botao-ativo);
   border-top: none;
+  cursor: pointer; /* Dica: adiciona a mãozinha ao passar o mouse */
 }
 
 .botao:first-child {
   border-radius: 40px 40px 0 0;
 }
 
-.botoes {
-  display: block;
-}
-
-@media screen and (min-width: 768px) {
-}
-
-@media screen and (min-width: 768px) {
-  .botoes {
-    display: flex;
-  }
-}
-@media screen and (min-width: 768px) {
-  /* Código omitido */
-
-  .botao:last-child {
-    border-radius: 0 40px 0 0;
-  }
-}
-.ativo {
+/* Estado Ativo */
+.botao.ativo {
   background-color: var(--botao-ativo);
   border-bottom: 4px solid var(--verde);
-  
+}
+
+/* Agrupando todas as mudanças para Desktop (Tablet em diante) */
+@media screen and (min-width: 768px) {
+  .botoes {
+    display: flex; /* No desktop, os botões ficam lado a lado */
+  }
+
+  .botao:first-child {
+    border-radius: 40px 0 0 0; /* Ajusta o canto apenas da esquerda */
+  }
+
+  .botao:last-child {
+    border-radius: 0 40px 0 0; /* Ajusta o canto apenas da direita */
+  }
+}
