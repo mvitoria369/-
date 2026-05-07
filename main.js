@@ -9,3 +9,6 @@ for (let i = 0; i < botoes.length; i++) {
     botoes[i].classList.add("ativo");
   };
 }
+for (var i = 0; i <= 10; i += 2) {
+  console.log(i);
+}
