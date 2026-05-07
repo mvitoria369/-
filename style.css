@@ -63,7 +63,7 @@ body {
 /* Estado Ativo */
 .botao.ativo {
   background-color: var(--botao-ativo);
-  border-bottom: 4px solid var(--verde);
+  border-bottom: 4px solid var(--turquesa);
 }
 
 /* Agrupando todas as mudanças para Desktop (Tablet em diante) */
