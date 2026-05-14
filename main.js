@@ -2,10 +2,34 @@ const botoes = document.querySelectorAll(".botao");
 
 botoes.forEach((botao) => {
   botao.onclick = function () {
-    // Remove a classe de quem quer que a tenha no momento
+  
     document.querySelector(".botao.ativo")?.classList.remove("ativo");
 
-    // Adiciona ao botão clicado
     botao.classList.add("ativo");
   };
 });
+function showOffsetPos(sId) {
+  var nLeft = 0,
+    nTop = 0;
+
+  for (
+    var oItNode = document.getElementById(sId); 
+    oItNode; 
+    nLeft += oItNode.offsetLeft,
+      nTop += oItNode.offsetTop,
+      oItNode = oItNode.offsetParent 
+  ); 
+
+  console.log(
+    'Offset position of "' +
+      sId +
+      '" element:\n left: ' +
+      nLeft +
+      "px;\n top: " +
+      nTop +
+      "px;",
+  );
+}
+
+showOffsetPos("content");
+
