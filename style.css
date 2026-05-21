@@ -1,10 +1,10 @@
 :root {
-    /* Cores baseadas na imagem */
-    --cor-fundo-externo: #121214;
-    --cor-fundo-aba: #18181B; /* Cinza bem escuro, quase preto */
-    --cor-divisoria: #2A2A2E;   /* Divisória sutil entre abas */
-    --cor-texto: #FFFFFF;       
-    --cor-destaque: #00ffc8;  /* Verde Alura */
+    /* Cores fiéis à imagem que você enviou */
+    --cor-fundo-externo: #151515; /* Fundo escuro de fora */
+    --cor-fundo-card: #20202c;    /* Roxo/azul escuro profundo do card */
+    --cor-divisoria: #2d2d3f;    /* Divisória sutil entre abas */
+    --cor-texto: #FFFFFF;
+    --cor-destaque-verde: #00ffc8; /* Verde Alura */
 }
 
 body {
@@ -16,101 +16,148 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    padding: 20px;
 }
 
+/* O container que segura o título e o card */
 .conteudo-principal {
     width: 90%;
     max-width: 600px;
-}
-
-.titulo-principal {
-    display: none;
-}
-
-/* O container principal que segura tudo */
-.botoes_e_conteudo {
-    background-color: var(--cor-fundo-aba);
-    border-radius: 32px; /* ALTERAÇÃO: Cantos muito mais arredondados */
-    overflow: hidden; /* Garante que o conteúdo de dentro não morda as bordas redondas */
     display: flex;
     flex-direction: column;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); /* Sombra um pouco mais suave e espalhada */
+    gap: 20px;
 }
 
-/* Estilização dos Botões */
+/* Título principal "Meus Objetivos do ano_" */
+.titulo-principal {
+    font-size: 2rem;
+    text-align: center;
+    margin: 0 0 10px 0;
+    font-weight: 700;
+}
+.titulo-principal span {
+    color: var(--cor-destaque-verde);
+    animation: pisca 1s infinite;
+}
+
+/* GRUPO DOS BOTÕES (Parte de cima do card) */
 .botoes {
     display: flex;
     flex-direction: column;
-    padding: 10px 10px 0 10px; /* ALTERAÇÃO: Pequeno espaço interno para os botões não colarem na borda */
+    background-color: var(--cor-fundo-card);
+    /* Arredonda apenas os cantos de cima para encaixar no design */
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
 .botao {
     background-color: transparent;
     border: none;
-    border-bottom: 1px solid var(--cor-divisoria);
     color: rgba(255, 255, 255, 0.6);
-    padding: 15px 20px;
+    padding: 20px;
     font-size: 1.1rem;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
     text-align: center;
-    border-radius: 20px; /* ALTERAÇÃO: Botões internos agora também são arredondados */
+    font-weight: 600;
+    position: relative;
+    border-bottom: 1px solid var(--cor-divisoria); /* Linha entre botões */
 }
 
-/* Remove a linha divisória do último botão */
+/* Remove a borda do último botão para não duplicar com o texto abaixo */
 .botao:last-child {
     border-bottom: none;
 }
 
-/* Hover arredondado */
 .botao:hover {
-    background-color: rgba(97, 237, 255, 0.15);
+    background-color: rgba(255, 255, 255, 0.03);
     color: var(--cor-texto);
 }
 
 /* O botão Ativo */
 .botao.ativo {
+    background-color: rgba(255, 255, 255, 0.02);
     color: var(--cor-texto);
-    position: relative;
-    font-weight: 500;
-    background-color: rgba(255, 255, 255, 0.03); /* Um leve fundo para o botão ativo */
 }
 
-/* A linha verde de destaque */
-.botao.ativo::after {
+/* A linha verde de destaque agora EM BAIXO do botão ativo */
+.botao.ativo::before {
     content: '';
     position: absolute;
-    bottom: 6px; /* ALTERAÇÃO: Subiu um pouco para flutuar dentro do botão arredondado */
-    left: 15%;
-    width: 70%;  /* ALTERAÇÃO: Barra menor e centralizada (estilo pílula) fica mais elegante */
+    bottom: 0; /* ALTERADO: Mudar de 'top: 0' para 'bottom: 0' */
+    left: 0;
+    width: 100%;
     height: 4px;
-    background-color: var(--cor-destaque);
-    border-radius: 10px; /* ALTERAÇÃO: Borda da linha verde arredondada */
-    box-shadow: 0 0 12px var(--cor-destaque);
+    background-color: var(--cor-destaque-verde);
+    box-shadow: 0 0 15px var(--cor-destaque-verde);
+    z-index: 2; /* Garante que o brilho fique por cima das divisórias */
 }
 
-/* Estilização dos Conteúdos */
+/* Como a linha mudou para baixo, removemos essa regra antiga do first-child */
+.botoes .botao:first-child.ativo::before {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+}
+
+/* Se for o primeiro botão ativo, arredonda a linha verde junto com o card */
+.botoes .botao:first-child.ativo::before {
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+}
+
+
+/* GRUPO DOS TEXTOS (Parte de baixo do card) */
+.abas-textos {
+    background-color: var(--cor-fundo-card);
+    /* Arredonda apenas os cantos de baixo */
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    margin-top: -20px; /* Gruda a caixa de texto na caixa de botões */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+/* Estilização dos Conteúdos internos */
 .aba-conteudo {
-    display: none;
-    padding: 40px 24px;
+    display: none; /* Escondido por padrão */
+    padding: 50px 30px;
     text-align: center;
 }
 
+/* Quando a aba tiver a classe ativo, ela aparece */
 .aba-conteudo.ativo {
     display: block;
 }
 
 .aba-conteudo-titulo-principal {
     font-size: 2.2rem;
-    margin: 0 0 20px 0;
+    margin: 0 0 25px 0;
     font-weight: 700;
+    line-height: 1.2;
 }
 
 .aba-conteudo-titulo-secundario {
-    font-size: 1rem;
-    color: var(--cor-destaque);
+    font-size: 0.9rem;
+    color: var(--cor-destaque-verde);
     text-transform: uppercase;
-    letter-spacing: 1px;
-    margin: 0;
-    font-weight: 600;
+    letter-spacing: 2px;
+    margin: 0 0 15px 0;
+    font-weight: 700;
+}
+
+/* Espaço do contador (id="contadorX") */
+.contador {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #FFFFFF;
+    margin-top: 15px;
+}
+
+/* Animação para o underline do título piscar */
+@keyframes pisca {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 }
