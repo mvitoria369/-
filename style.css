@@ -1,82 +1,116 @@
-@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&display=swap");
-
 :root {
-  --cor-de-fundo: #1e1e1e;
-  --turquesa: #30D5C8;
-  --branco: #ffffff;
-  --botao-ativo: #3a375e;
-  --botao-inativo: rgba(58, 55, 94, 0.5);
-  --texto-fundo: rgba(58, 55, 94, 0.3);
+    /* Cores baseadas na imagem */
+    --cor-fundo-externo: #121214;
+    --cor-fundo-aba: #18181B; /* Cinza bem escuro, quase preto */
+    --cor-divisoria: #2A2A2E;   /* Divisória sutil entre abas */
+    --cor-texto: #FFFFFF;       
+    --cor-destaque: #00ffc8;  /* Verde Alura */
 }
 
 body {
-  background-color: var(--cor-de-fundo);
-  color: var(--branco);
-  font-family: "Chakra Petch", sans-serif;
+    background-color: var(--cor-fundo-externo);
+    color: var(--cor-texto);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
 }
 
 .conteudo-principal {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-width: 1200px;
-  width: 100%;
-  margin: 0 auto;
+    width: 90%;
+    max-width: 600px;
 }
 
 .titulo-principal {
-  text-align: left;
-  width: 100%;
-  font-size: 32px;
+    display: none;
 }
 
-.titulo-principal span {
-  color: var(--turquesa);
+/* O container principal que segura tudo */
+.botoes_e_conteudo {
+    background-color: var(--cor-fundo-aba);
+    border-radius: 32px; /* ALTERAÇÃO: Cantos muito mais arredondados */
+    overflow: hidden; /* Garante que o conteúdo de dentro não morda as bordas redondas */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); /* Sombra um pouco mais suave e espalhada */
 }
 
+/* Estilização dos Botões */
 .botoes {
-  display: block; /* No mobile, os botões ficam um em cima do outro */
+    display: flex;
+    flex-direction: column;
+    padding: 10px 10px 0 10px; /* ALTERAÇÃO: Pequeno espaço interno para os botões não colarem na borda */
 }
 
 .botao {
-  font-family: "Chakra Petch", sans-serif; /* Corrigido aqui */
-  background-color: var(--botao-inativo);
-  color: var(--branco);
-  display: flex;
-  justify-content: center;
-  padding: 1em;
-  font-size: 18px;
-  align-items: center;
-  width: 100%;
-  border-bottom: 4px solid var(--botao-ativo);
-  border-left: 2px solid var(--botao-ativo);
-  border-right: 2px solid var(--botao-ativo);
-  border-top: none;
-  cursor: pointer; /* Dica: adiciona a mãozinha ao passar o mouse */
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--cor-divisoria);
+    color: rgba(255, 255, 255, 0.6);
+    padding: 15px 20px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    border-radius: 20px; /* ALTERAÇÃO: Botões internos agora também são arredondados */
 }
 
-.botao:first-child {
-  border-radius: 40px 40px 0 0;
+/* Remove a linha divisória do último botão */
+.botao:last-child {
+    border-bottom: none;
 }
 
-/* Estado Ativo */
+/* Hover arredondado */
+.botao:hover {
+    background-color: rgba(97, 237, 255, 0.15);
+    color: var(--cor-texto);
+}
+
+/* O botão Ativo */
 .botao.ativo {
-  background-color: var(--botao-ativo);
-  border-bottom: 4px solid var(--turquesa);
+    color: var(--cor-texto);
+    position: relative;
+    font-weight: 500;
+    background-color: rgba(255, 255, 255, 0.03); /* Um leve fundo para o botão ativo */
 }
 
-/* Agrupando todas as mudanças para Desktop (Tablet em diante) */
-@media screen and (min-width: 768px) {
-  .botoes {
-    display: flex; /* No desktop, os botões ficam lado a lado */
-  }
+/* A linha verde de destaque */
+.botao.ativo::after {
+    content: '';
+    position: absolute;
+    bottom: 6px; /* ALTERAÇÃO: Subiu um pouco para flutuar dentro do botão arredondado */
+    left: 15%;
+    width: 70%;  /* ALTERAÇÃO: Barra menor e centralizada (estilo pílula) fica mais elegante */
+    height: 4px;
+    background-color: var(--cor-destaque);
+    border-radius: 10px; /* ALTERAÇÃO: Borda da linha verde arredondada */
+    box-shadow: 0 0 12px var(--cor-destaque);
+}
 
-  .botao:first-child {
-    border-radius: 40px 0 0 0; /* Ajusta o canto apenas da esquerda */
-  }
+/* Estilização dos Conteúdos */
+.aba-conteudo {
+    display: none;
+    padding: 40px 24px;
+    text-align: center;
+}
 
-  .botao:last-child {
-    border-radius: 0 40px 0 0; /* Ajusta o canto apenas da direita */
-  }
+.aba-conteudo.ativo {
+    display: block;
+}
+
+.aba-conteudo-titulo-principal {
+    font-size: 2.2rem;
+    margin: 0 0 20px 0;
+    font-weight: 700;
+}
+
+.aba-conteudo-titulo-secundario {
+    font-size: 1rem;
+    color: var(--cor-destaque);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+    font-weight: 600;
 }
