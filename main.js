@@ -25,8 +25,14 @@ function atualizaContador() {
     const minutos = Math.floor((tempoRestante % (1000 * 60 * 60)) / (1000 * 60));
     const segundos = Math.floor((tempoRestante % (1000 * 60)) / 1000);
 
-    // Texto formatado que vai aparecer na tela
-    const textoCronometro = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+    // Define se usa singular ou plural para cada unidade de tempo
+    const txtDias = dias === 1 ? "dia" : "dias";
+    const txtHoras = horas === 1 ? "hora" : "horas";
+    const txtMinutos = minutos === 1 ? "minuto" : "minutos";
+    const txtSegundos = segundos === 1 ? "segundo" : "segundos";
+
+    // Texto formatado com o nome inteiro
+    const textoCronometro = `${dias} ${txtDias} ${horas} ${txtHoras} ${minutos} ${txtMinutos} ${segundos} ${txtSegundos}`;
 
     // Atualiza o contador de TODAS as abas (já que o prazo final é o mesmo)
     for (let i = 0; i < 4; i++) {

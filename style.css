@@ -1,22 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap');
+
 :root {
-    /* Cores fiéis à imagem que você enviou */
-    --cor-fundo-externo: #151515; /* Fundo escuro de fora */
-    --cor-fundo-card: #20202c;    /* Roxo/azul escuro profundo do card */
-    --cor-divisoria: #2d2d3f;    /* Divisória sutil entre abas */
-    --cor-texto: #FFFFFF;
-    --cor-destaque-verde: #00ffc8; /* Verde Alura */
+    /* Nova paleta: Cores fofas, camponesas e aconchegantes */
+    --cor-fundo-externo: #f7f3eb; /* Bege clarinho/creme, lembra papel ou linho */
+    --cor-fundo-card: #ffffff;    /* Branco puro para o card se destacar */
+    --cor-divisoria: #e8ded1;     /* Divisória sutil em tom de areia */
+    --cor-texto: #5a4a42;         /* Marrom caloroso em vez de preto (menos agressivo) */
+    --cor-texto-suave: #8c766b;   /* Marrom mais claro para textos secundários */
+    --cor-destaque-campones: #8fa883; /* Verde oliva/folha, super natural e fofo */
+    --cor-detalhe-quente: #e6a184;    /* Tom de pêssego/tijolo suave para detalhes */
 }
 
 body {
     background-color: var(--cor-fundo-externo);
     color: var(--cor-texto);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Mistura de Comfortaa (arredondada e fofa) com serifadas clássicas */
+    font-family: 'Comfortaa', 'Segoe UI', cursive, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
     padding: 20px;
+    /* Um padrão sutil no fundo que lembra tecido ou piquenique (opcional, remova se não gostar) */
+    background-image: radial-gradient(rgba(143, 168, 131, 0.1) 1px, transparent 0);
+    background-size: 24px 24px;
 }
 
 /* O container que segura o título e o card */
@@ -30,14 +38,18 @@ body {
 
 /* Título principal "Meus Objetivos do ano_" */
 .titulo-principal {
-    font-size: 2rem;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.4rem;
     text-align: center;
     margin: 0 0 10px 0;
-    font-weight: 700;
+    font-weight: 600;
+    color: var(--cor-texto);
 }
+
+/* O cursor piscando agora é um detalhe fofo */
 .titulo-principal span {
-    color: var(--cor-destaque-verde);
-    animation: pisca 1s infinite;
+    color: var(--cor-detalhe-quente);
+    animation: pisca 1.2s infinite;
 }
 
 /* GRUPO DOS BOTÕES (Parte de cima do card) */
@@ -45,119 +57,79 @@ body {
     display: flex;
     flex-direction: column;
     background-color: var(--cor-fundo-card);
-    /* Arredonda apenas os cantos de cima para encaixar no design */
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
     overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    /* Sombra muito mais suave e leve, sem aquele peso do tema escuro */
+    box-shadow: 0 10px 30px rgba(90, 74, 66, 0.08);
+    border: 2px solid var(--cor-divisoria);
+    border-bottom: none;
 }
 
 .botao {
     background-color: transparent;
     border: none;
-    color: rgba(255, 255, 255, 0.6);
-    padding: 20px;
-    font-size: 1.1rem;
+    color: var(--cor-texto-suave);
+    padding: 18px;
+    font-size: 1.05rem;
     cursor: pointer;
     transition: all 0.3s ease;
     text-align: center;
-    font-weight: 600;
+    font-weight: 700;
     position: relative;
-    border-bottom: 1px solid var(--cor-divisoria); /* Linha entre botões */
+    border-bottom: 1px dashed var(--cor-divisoria); /* Linha tracejada fofa */
 }
 
-/* Remove a borda do último botão para não duplicar com o texto abaixo */
 .botao:last-child {
     border-bottom: none;
 }
 
 .botao:hover {
-    background-color: rgba(255, 255, 255, 0.03);
-    color: var(--cor-texto);
+    background-color: rgba(143, 168, 131, 0.05); /* Leve toque verde ao passar o mouse */
+    color: var(--cor-destaque-campones);
 }
 
 /* O botão Ativo */
 .botao.ativo {
-    background-color: rgba(255, 255, 255, 0.02);
-    color: var(--cor-texto);
+    background-color: rgba(143, 168, 131, 0.08);
+    color: var(--cor-destaque-campones);
 }
 
-/* A linha verde de destaque agora EM BAIXO do botão ativo */
+/* A linha de destaque: saiu o neon, entrou uma bordinha sólida e fofa */
 .botao.ativo::before {
     content: '';
     position: absolute;
-    bottom: 0; /* ALTERADO: Mudar de 'top: 0' para 'bottom: 0' */
+    bottom: 0;
     left: 0;
     width: 100%;
     height: 4px;
-    background-color: var(--cor-destaque-verde);
-    box-shadow: 0 0 15px var(--cor-destaque-verde);
-    z-index: 2; /* Garante que o brilho fique por cima das divisórias */
+    background-color: var(--cor-destaque-campones);
+    box-shadow: none; /* Remove o brilho neon */
+    z-index: 2;
 }
-
-/* Como a linha mudou para baixo, removemos essa regra antiga do first-child */
-.botoes .botao:first-child.ativo::before {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-}
-}
-
-/* Se for o primeiro botão ativo, arredonda a linha verde junto com o card */
-.botoes .botao:first-child.ativo::before {
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
-}
-
 
 /* GRUPO DOS TEXTOS (Parte de baixo do card) */
 .abas-textos {
     background-color: var(--cor-fundo-card);
-    /* Arredonda apenas os cantos de baixo */
-    border-bottom-left-radius: 40px;
-    border-bottom-right-radius: 40px;
-    margin-top: -20px; /* Gruda a caixa de texto na caixa de botões */
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+    margin-top: -20px;
+    box-shadow: 0 15px 30px rgba(90, 74, 66, 0.08);
     overflow: hidden;
+    border: 2px solid var(--cor-divisoria);
 }
 
 /* Estilização dos Conteúdos internos */
 .aba-conteudo {
-    display: none; /* Escondido por padrão */
-    padding: 50px 30px;
+    display: none;
+    padding: 40px 30px;
     text-align: center;
 }
 
-/* Quando a aba tiver a classe ativo, ela aparece */
 .aba-conteudo.ativo {
     display: block;
 }
 
 .aba-conteudo-titulo-principal {
-    font-size: 2.2rem;
-    margin: 0 0 25px 0;
-    font-weight: 700;
-    line-height: 1.2;
-}
-
-.aba-conteudo-titulo-secundario {
-    font-size: 0.9rem;
-    color: var(--cor-destaque-verde);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin: 0 0 15px 0;
-    font-weight: 700;
-}
-
-/* Espaço do contador (id="contadorX") */
-.contador {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #FFFFFF;
-    margin-top: 15px;
-}
-
-/* Animação para o underline do título piscar */
-@keyframes pisca {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
