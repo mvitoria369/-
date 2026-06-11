@@ -1,14 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap');
 
 :root {
-    /* Nova paleta: Cores fofas, camponesas e aconchegantes */
-    --cor-fundo-externo: #f7f3eb; /* Bege clarinho/creme, lembra papel ou linho */
-    --cor-fundo-card: #ffffff;    /* Branco puro para o card se destacar */
-    --cor-divisoria: #e8ded1;     /* Divisória sutil em tom de areia */
-    --cor-texto: #5a4a42;         /* Marrom caloroso em vez de preto (menos agressivo) */
-    --cor-texto-suave: #8c766b;   /* Marrom mais claro para textos secundários */
-    --cor-destaque-campones: #8fa883; /* Verde oliva/folha, super natural e fofo */
-    --cor-detalhe-quente: #e6a184;    /* Tom de pêssego/tijolo suave para detalhes */
+    --cor-fundo-externo: #f7f3eb; 
+    --cor-fundo-card: #ffffff;    
+    --cor-divisoria: #e8ded1;     
+    --cor-texto: #5a4a42;         
+    --cor-texto-suave: #8c766b;   
+    --cor-destaque-campones: #8fa883; 
+    --cor-detalhe-quente: #e6a184;    
 }
 
 body {
