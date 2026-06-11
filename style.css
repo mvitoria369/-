@@ -13,7 +13,7 @@
 body {
     background-color: var(--cor-fundo-externo);
     color: var(--cor-texto);
-    /* Mistura de Comfortaa (arredondada e fofa) com serifadas clássicas */
+
     font-family: 'Comfortaa', 'Segoe UI', cursive, sans-serif;
     display: flex;
     justify-content: center;
@@ -45,7 +45,7 @@ body {
     color: var(--cor-texto);
 }
 
-/* O cursor piscando agora é um detalhe fofo */
+
 .titulo-principal span {
     color: var(--cor-detalhe-quente);
     animation: pisca 1.2s infinite;

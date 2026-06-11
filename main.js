@@ -48,8 +48,5 @@ function atualizaContador() {
     }
 }
 
-// Executa a função imediatamente para não começar em branco
 atualizaContador();
-
-// Atualiza o cronômetro a cada 1 segundo (1000 milissegundos)
 setInterval(atualizaContador, 1000);
